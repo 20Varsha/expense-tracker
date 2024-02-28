@@ -1,26 +1,50 @@
 const mongoose = require("mongoose");
 
-const VirtualMeetingNote = new mongoose.Schema({
-  project_name: {
-    type: String,
+const expenseSchema = new mongoose.Schema({
+  income: {
+    type: Number,
+    required: true
   },
-  name: {
-    type: String
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true
   },
-  title: {
-    type: String,
-  },
-  meeting_note: {
-    type: String,
-  },
+  expenses: [
+    {
+      category_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
+      },
+      item_name: {
+        type: String,
+        required: true
+      },
+      amount: {
+        type: Number,
+        required: true
+      },
+      created_at: {
+        type: Date,
+        default: Date.now
+      },
+      updated_at: {
+        type: Date,
+        default: Date.now
+      }
+    }
+  ],
   created_at: {
     type: Date,
     default: Date.now
   },
-  is_active: {
+  updated_at: {
+    type: Date,
+    default: Date.now
+  },
+  status: {
     type: Boolean,
     default: true
-  },
+  }
 });
 
-module.exports = mongoose.model("VirtualMeeting", VirtualMeetingNote);
+module.exports = mongoose.model("expense", expenseSchema);
