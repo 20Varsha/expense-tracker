@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const expenseSchema = new mongoose.Schema({
+const ExpenseSchema = new mongoose.Schema({
   income: {
     type: Number,
     required: true
@@ -47,4 +47,4 @@ const expenseSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("expense", expenseSchema);
+module.exports = mongoose.model("expense", ExpenseSchema);
