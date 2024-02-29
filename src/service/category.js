@@ -1,21 +1,21 @@
 require("dotenv").config();
-const expense_repository = require('../repository/expense')
+const mongoose = require("mongoose");
+const category_repository = require('../repository/category')
 
-const create = async (data,userId) => {
-    const expense = await expense_repository.create({
+const create = async (data) => {
+    const category = await category_repository.create({
         ...data,
-        userId
     });
-    return expense;
+    return category;
 };
 
 const get = async () => {
-    const expense = expense_repository.get_by_name()
-    return expense
+    const category = category_repository.get_by_name()
+    return category
 }
 
 const update = async (id, data) => {
-    const existingNote = await expense_repository.get_by_name({ _id: { $ne: id }})
+    const existingNote = await category_repository.get_by_name({ _id: { $ne: id }})
     
     if (existingNote && existingNote.length >= 1) {
         return { error_code: 1002 };
@@ -23,13 +23,13 @@ const update = async (id, data) => {
         const filter = { _id: id };
         const updateData = { $set: { ...data } };
 
-        await expense_repository.update(filter, updateData, { upsert: true });
+        await category_repository.update(filter, updateData, { upsert: true });
         return updateData.$set;
     }
 };
 
 const remove = async (id) => {
-    const delete_note = await expense_repository.remove({ _id: id })
+    const delete_note = await category_repository.remove({ _id: id })
     if (!delete_note) { return ({ error_code: 1001 }) }
     return delete_note
 }

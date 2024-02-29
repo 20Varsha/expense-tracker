@@ -41,7 +41,7 @@ const login = async (data) => {
         return { error_code: 1004 };
     }
 
-    const token = jwt.sign({ email: user[0].email }, process.env.JWT_SECRET);
+    const token = jwt.sign({ email: user[0].email,userId:user[0]._id }, process.env.JWT_SECRET);
     return { token };
 };
 

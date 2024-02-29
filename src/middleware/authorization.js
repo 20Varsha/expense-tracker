@@ -2,10 +2,10 @@ const jwt = require('jsonwebtoken');
 const constant = require("../constants/constants")
 require('dotenv').config()
 
-const verifyToken = async (req, res, next) => {
+const auth = async (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (authHeader) {
-    const token = req.headers.authorization.startsWith('Bearer ') ? req.headers.authorization.slice(7) : req.headers.authorization;
+    const token = req.headers.authorization.startsWith('Bearer') ? req.headers.authorization.slice(7) : req.headers.authorization;
     try {
       const decoded = await jwt.verify(token, process.env.JWT_SECRET);
       req.user = decoded;
@@ -20,4 +20,4 @@ const verifyToken = async (req, res, next) => {
   
 };
 
-module.exports = { verifyToken };
+module.exports = { auth };

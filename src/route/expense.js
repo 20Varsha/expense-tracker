@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const expense_controller = require('../controller/expense');
-const {verifyToken}=require("../middleware/authorization")
+const {auth}=require("../middleware/authorization")
 
-router.post('/create', expense_controller.create);
+router.post('/create',auth, expense_controller.create);
 
-router.get('/fetch',verifyToken, expense_controller.get);
+router.get('/fetch',auth, expense_controller.get);
 
-router.delete('/delete/:id', expense_controller.remove);
+router.delete('/delete/:id',auth, expense_controller.remove);
 
-router.patch('/update/:id', expense_controller.update);
+router.patch('/update/:id',auth, expense_controller.update);
 
 module.exports = router
