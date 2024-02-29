@@ -44,6 +44,7 @@ module.exports = {
     DATA_NOT_FOUND: "Data not found",
     PASSWORD_MISSING: "Password missing",
 
+    
     //JWT Token
     UNAUTHORIZED: "Token verification failed",
     TOKEN_MISSING: "Authorization header missing",
