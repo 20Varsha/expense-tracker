@@ -9,7 +9,7 @@ const create = async (req, res) => {
         } else if (result.error_code === 1002) {
             return res.status(409).send({ message: constant.PASSWORD_MISS_MATCH });
         }
-        res.status(200).json({ message: constant.USER_CREATED, result });
+        res.status(200).json({ status:"succes",message: constant.USER_CREATED, result });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
@@ -24,7 +24,7 @@ const login = async (req, res) => {
             return res.status(401).send({ message: constant.PASSWORD_MISS_MATCH });
         }
 
-        res.status(200).json({ message: constant.AUTHENTICATION_SUCCESSFUL, result });
+        res.status(200).json({status:"succes", message: constant.AUTHENTICATION_SUCCESSFUL, result });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
