@@ -16,17 +16,10 @@ const get = async () => {
 }
 
 const update = async (id, data) => {
-    const existingNote = await income_repository.get_by_name({ _id: { $ne: id }})
-    
-    if (existingNote && existingNote.length >= 1) {
-        return { error_code: 1002 };
-    } else {
         const filter = { _id: id };
         const updateData = { $set: { ...data } };
-
         await income_repository.update(filter, updateData, { upsert: true });
         return updateData.$set;
-    }
 };
 
 const remove = async (id) => {
